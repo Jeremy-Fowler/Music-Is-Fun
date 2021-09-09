@@ -14,6 +14,7 @@ class SongsService {
     $.getJSON(url)
       .then(res => {
         ProxyState.songs = res.results.map(rawData => new Song(rawData));
+        console.log(ProxyState.songs)
       })
       .catch(err => {
         throw new Error(err);

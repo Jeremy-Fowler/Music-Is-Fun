@@ -7,7 +7,7 @@ export default class Song {
     this.album = data.collectionName || data.album;
     this.price = data.trackPrice || data.price;
     this.preview = data.previewUrl || data.preview;
-    this._id = data.trackId || data._id;
+    this.id = data.trackId || data.id;
   }
 
   get Template() {
@@ -17,7 +17,7 @@ export default class Song {
       <div class="card-body">
         <h5 class="card-title">${this.artist}</h5>
         <p class="card-text"> Song: ${this.title} Album: ${this.album}</p>
-        <button class="btn btn-primary" onclick="app.playlistController.getPlaylist()">Add to Playlist</button>
+        <button class="btn btn-primary" onclick="app.songsController.addSong('${this.id}')">Add to Playlist</button>
       </div>
     </div>
         `;
@@ -25,7 +25,7 @@ export default class Song {
 
   get playlistTemplate() {
     return /*html*/`
-
+        <li><span>${this.title}</span> <span onclick="app.songsController.removeSong('${this.id}')" class="selectable">😢</span></li>
         `;
   }
 }
